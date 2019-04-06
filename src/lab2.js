@@ -23,7 +23,7 @@ function multiply(a, b) {
 
 class App extends Component {
   state = {
-    angle: 1,
+    angle: 10,
     circlyCenterX: 0,
     circlyCenterY: 0,
     scaleX: 1,
@@ -53,7 +53,7 @@ class App extends Component {
 
   rotation = () => {
     const lol = [[-2, 2, 1], [2, 2, 1], [-0.5, 0.5, 1], [-2, -2, 1]];
-    let timerId = setInterval(async () => {
+    // let timerId = setInterval(async () => {
       const {
         angle,
         ourMatrix,
@@ -61,17 +61,7 @@ class App extends Component {
         circlyCenterX,
         circlyCenterY
       } = this.state;
-      // const aroundDot1 = [
-      //   [1, 0, 0],
-      //   [0, 1, 0],
-      //   [circlyCenterX, circlyCenterY, 1]
-      // ];
-      // const aroundDot2 = [
-      //   [1, 0, 0],
-      //   [0, 1, 0],
-      //   [-circlyCenterX, -circlyCenterY, 1]
-      // ];
-      
+
       const newRotate1 = [
         [
           Math.cos((angle * Math.PI) / 180),
@@ -118,18 +108,12 @@ class App extends Component {
         ],
         [0, 0, 0, 1]
       ];
-      console.log(newRotate3);
-      // const a1 = multiply(, aroundDot2);
 
       const a1 = multiply(ourMatrix, newRotate3)
       const c1 = multiply(a1, newRotate2)
-      // const c1 = multiply(d1 , aroundDot1);
 
-      // const a2 = multiply(ourMatrix2, aroundDot2);
       const a2 = multiply(ourMatrix2, newRotate3)
       const c2 = multiply(a2, newRotate2)
-
-      // const c2 = multiply(d2 , aroundDot1);
 
       functionPlot({
         target: root,
@@ -178,7 +162,7 @@ class App extends Component {
         ourMatrix: c1,
         ourMatrix2: c2
       });
-    }, 10);
+    // }, 100);
   };
 
   dimetria = () => {
@@ -447,7 +431,7 @@ class App extends Component {
               className="btn btn-outline-success"
               onClick={this.dimetria}
             >
-              REFLECTION
+              DIMETRIA
             </button>
           </div>
 
