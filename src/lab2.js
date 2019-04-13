@@ -944,31 +944,43 @@ class App extends Component {
   }
 
   handleKeyPress = event => {
-    if (event.key === "1") {
+    switch (event.key){
+      case "1":
       if (this.state.work) {
         console.log("now working");
       } else {
         timerId = setInterval(this.rotation, 50);
         this.setState({ work: true });
       }
-    }
-    if (event.key === "q") {
+      break;
+
+      case  "q":
       this.start();
-    }
-    if (event.key === "e") {
+      break;
+
+      case  "e":
       this.stop();
-    }
-    if (event.key === "w") {
+      break;
+
+      case  "w":
       this.setState({ rotateClockwise: !this.state.rotateClockwise });
-    }
-    if (event.key === "3") {
+      break;
+
+      case  "3":
       clearInterval(timerId);
       this.setState({ work: false });
-    }
-    if (event.key === "2") {
+      break;
+
+      case  "2":
       let clock = this.state.clock === -1 ? 1 : -1;
       this.setState({ clock: clock });
+      break;
+
+
+      default :
+      break;
     }
+  
   };
 
   renderScene() {
