@@ -1,6 +1,7 @@
-
 import React, { Component } from "react";
 import * as THREE from "three";
+import { OrbitControls } from "../node_modules/three-orbitcontrols-ts-master";
+
 let timerId;
 function multiply(a, b) {
   let aNumRows = a.length,
@@ -743,6 +744,23 @@ class App extends Component {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    // How far you can orbit vertically, upper and lower limits.
+    controls.minPolarAngle = 0;
+    controls.maxPolarAngle = Math.PI;
+
+    // How far you can dolly in and out ( PerspectiveCamera only )
+    controls.minDistance = 0;
+    controls.maxDistance = Infinity;
+
+    this.enableZoom = true; // Set to false to disable zooming
+    this.zoomSpeed = 1.0;
+
+    controls.enablePan = true; // Set to false to disable panning (ie vertical and horizontal translations)
+
+    controls.enableDamping = true; // Set to false to disable damping (ie inertia)
+    controls.dampingFactor = 0.25;
 
     // фигура а восьмиугольник
     let x1 = -20;
@@ -764,14 +782,14 @@ class App extends Component {
 
     var eight = new THREE.Geometry();
 
-    eight.vertices.push(new THREE.Vector3(x1, y1, 1.001));
+    eight.vertices.push(new THREE.Vector3(x1, y1, 3));
     eight.vertices.push(new THREE.Vector3(x2, y2, 1.001));
-    eight.vertices.push(new THREE.Vector3(x3, y3, 1.001));
-    eight.vertices.push(new THREE.Vector3(x4, y4, 1.001));
-    eight.vertices.push(new THREE.Vector3(x5, y5, 1.001));
-    eight.vertices.push(new THREE.Vector3(x6, y6, 1.001));
-    eight.vertices.push(new THREE.Vector3(x7, y7, 1.001));
-    eight.vertices.push(new THREE.Vector3(x8, y8, 1.001));
+    eight.vertices.push(new THREE.Vector3(x3, y3, 4.001));
+    eight.vertices.push(new THREE.Vector3(x4, y4, 2.001));
+    eight.vertices.push(new THREE.Vector3(x5, y5, 0.001));
+    eight.vertices.push(new THREE.Vector3(x6, y6, 3.001));
+    eight.vertices.push(new THREE.Vector3(x7, y7, 4.001));
+    eight.vertices.push(new THREE.Vector3(x8, y8, -2.001));
     eight.faces.push(new THREE.Face3(0, 1, 2));
     eight.faces.push(new THREE.Face3(1, 2, 3));
     eight.faces.push(new THREE.Face3(2, 3, 4));
@@ -922,9 +940,9 @@ class App extends Component {
     });
   };
 
-  componentWillUnmount() {
-    this.mount.removeChild(this.renderer.domElement);
-  }
+  // componentWillUnmount() {
+  //   this.mount.removeChild(this.renderer.domElement);
+  // }
 
   start() {
     this.frameId = requestAnimationFrame(this.animate);
@@ -944,43 +962,41 @@ class App extends Component {
   }
 
   handleKeyPress = event => {
-    switch (event.key){
+    switch (event.key) {
       case "1":
-      if (this.state.work) {
-        console.log("now working");
-      } else {
-        timerId = setInterval(this.rotation, 50);
-        this.setState({ work: true });
-      }
-      break;
+        if (this.state.work) {
+          console.log("now working");
+        } else {
+          timerId = setInterval(this.rotation, 50);
+          this.setState({ work: true });
+        }
+        break;
 
-      case  "q":
-      this.start();
-      break;
+      case "q":
+        this.start();
+        break;
 
-      case  "e":
-      this.stop();
-      break;
+      case "e":
+        this.stop();
+        break;
 
-      case  "w":
-      this.setState({ rotateClockwise: !this.state.rotateClockwise });
-      break;
+      case "w":
+        this.setState({ rotateClockwise: !this.state.rotateClockwise });
+        break;
 
-      case  "3":
-      clearInterval(timerId);
-      this.setState({ work: false });
-      break;
+      case "3":
+        clearInterval(timerId);
+        this.setState({ work: false });
+        break;
 
-      case  "2":
-      let clock = this.state.clock === -1 ? 1 : -1;
-      this.setState({ clock: clock });
-      break;
+      case "2":
+        let clock = this.state.clock === -1 ? 1 : -1;
+        this.setState({ clock: clock });
+        break;
 
-
-      default :
-      break;
+      default:
+        break;
     }
-  
   };
 
   renderScene() {
