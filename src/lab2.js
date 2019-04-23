@@ -782,14 +782,14 @@ class App extends Component {
 
     var eight = new THREE.Geometry();
 
-    eight.vertices.push(new THREE.Vector3(x1, y1, 3));
+    eight.vertices.push(new THREE.Vector3(x1, y1, 1.001));
     eight.vertices.push(new THREE.Vector3(x2, y2, 1.001));
-    eight.vertices.push(new THREE.Vector3(x3, y3, 4.001));
-    eight.vertices.push(new THREE.Vector3(x4, y4, 2.001));
-    eight.vertices.push(new THREE.Vector3(x5, y5, 0.001));
-    eight.vertices.push(new THREE.Vector3(x6, y6, 3.001));
-    eight.vertices.push(new THREE.Vector3(x7, y7, 4.001));
-    eight.vertices.push(new THREE.Vector3(x8, y8, -2.001));
+    eight.vertices.push(new THREE.Vector3(x3, y3, 1.001));
+    eight.vertices.push(new THREE.Vector3(x4, y4, 1.001));
+    eight.vertices.push(new THREE.Vector3(x5, y5, 1.001));
+    eight.vertices.push(new THREE.Vector3(x6, y6, 1.001));
+    eight.vertices.push(new THREE.Vector3(x7, y7, 1.001));
+    eight.vertices.push(new THREE.Vector3(x8, y8, 1.001));
     eight.faces.push(new THREE.Face3(0, 1, 2));
     eight.faces.push(new THREE.Face3(1, 2, 3));
     eight.faces.push(new THREE.Face3(2, 3, 4));
