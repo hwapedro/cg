@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Three.js Orbit Controller Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <script src="./OrbitControls.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+
+  </head>
+  <body>
+    <div>
+      <button id="hide-button" onclick="kek()">change lab/practice</button>
+    </div>
+
+    <div id="practice" hidden></div>
+    <div id="lab"></div>
+
+    <script>
+      function kek() {
+        var elem = document.getElementById("practice");
+        elem.hidden = !elem.hidden;
+
+        var elem = document.getElementById("lab");
+        elem.hidden = !elem.hidden;
+      }
+    </script>
+
+    <script src="./OrbitControls.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
